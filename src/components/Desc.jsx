@@ -49,7 +49,7 @@ export default function Component() {
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ amount: 0.5 }}
+        viewport={{ once: true, amount: 0.5 }}
       >
         <motion.div
           variants={itemVariants}
