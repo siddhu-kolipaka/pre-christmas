@@ -1,40 +1,95 @@
+import Slider from "react-slick";
+import Snowfall from "react-snowfall";
 import { motion } from "framer-motion";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-const photos = [
-  // Replace with your own image URLs
-  "https://via.placeholder.com/300/FF5733/FFFFFF?text=Image+1",
-  "https://via.placeholder.com/300/33FF57/FFFFFF?text=Image+2",
-  "https://via.placeholder.com/300/3357FF/FFFFFF?text=Image+3",
-  "https://via.placeholder.com/300/FF33A1/FFFFFF?text=Image+4",
-  "https://via.placeholder.com/300/33FFD5/FFFFFF?text=Image+5",
-  "https://via.placeholder.com/300/FFD733/FFFFFF?text=Image+6",
-];
+const PhotoGallery = ({ images }) => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    arrows: false,
+    pauseOnHover: false,
+  };
 
-const PhotoGallery = () => {
+  const carouselVariant = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+        ease: "easeInOut",
+      },
+    },
+  };
+
+  const imageHover = {
+    hover: {
+      scale: 1.1,
+      transition: { duration: 0.5 },
+    },
+  };
+
+  const gridImageVariant = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.5, ease: "easeInOut" },
+    },
+  };
+
   return (
-    <div className="p-8">
-      <h2 className="text-4xl font-bold text-center mb-8 text-white">
-        Photo Gallery
-      </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {photos.map((photo, index) => (
+    <div className="relative  bg-gradient-to-b from-black to-black flex flex-col items-center justify-center p-10">
+      <Snowfall color="#ffffff" snowflakeCount={100} />
+
+      <motion.div
+        className="w-[75vw] mb-6 shadow-lg"
+        variants={carouselVariant}
+        initial="hidden"
+        animate="visible"
+      >
+        <Slider {...settings}>
+          {images.map((image, index) => (
+            <motion.div key={index} className="">
+              <motion.img
+                src={image.src}
+                alt={image.alt}
+                className="object-cover sm:w-[75vw] sm:h-[50vh] rounded-lg shadow-lg"
+                whileHover="hover"
+                variants={imageHover}
+              />
+            </motion.div>
+          ))}
+        </Slider>
+      </motion.div>
+
+      <motion.div
+        className="grid grid-cols-2  md:grid-cols-5 gap-6  "
+        initial="hidden"
+        animate="visible"
+      >
+        {images.map((image, index) => (
           <motion.div
             key={index}
-            className="relative overflow-hidden rounded-lg shadow-lg"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
+            className="relative group overflow-hidden rounded-lg shadow-lg transform transition-transform duration-500 ease-in-out"
+            variants={gridImageVariant}
           >
             <img
-              src={photo}
-              alt={`Gallery Image ${index + 1}`}
-              className="w-full h-full object-cover"
+              src={image.src}
+              alt={image.alt}
+              className="w-full h-40 object-cover rounded-lg"
             />
-            <div className="absolute inset-0 bg-black opacity-0 hover:opacity-50 transition-opacity duration-300 flex items-center justify-center">
-              <p className="text-white font-semibold">View Image</p>
-            </div>
+            <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300 ease-in-out rounded-lg"></div>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };

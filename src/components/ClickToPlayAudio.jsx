@@ -8,7 +8,6 @@ const ClickToPlayAudio = ({ handleClick }) => {
       transition={{ duration: 1.5 }}
       className="relative flex flex-col items-center justify-center w-screen h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white overflow-hidden"
     >
-      {/* Heading Animation */}
       <motion.h1
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -21,10 +20,10 @@ const ClickToPlayAudio = ({ handleClick }) => {
         className="mb-8 text-center text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500"
         style={{ fontFamily: "'Cinzel', serif" }}
       >
-        Pre-Christmas at IIEST
+        Join us for the
+        <br /> Pre-Christmas Celebration
       </motion.h1>
 
-      {/* Click Me Button with Complex Animations */}
       <motion.button
         onClick={handleClick}
         whileHover={{
@@ -50,7 +49,6 @@ const ClickToPlayAudio = ({ handleClick }) => {
         Click Here
       </motion.button>
 
-      {/* Ambient Glow Effect */}
       <motion.div
         className="absolute w-80 h-80 rounded-full bg-gradient-to-r from-purple-500 to-red-500 opacity-30 blur-2xl pointer-events-none"
         animate={{
@@ -64,7 +62,6 @@ const ClickToPlayAudio = ({ handleClick }) => {
         }}
       />
 
-      {/* Pulsing Circle Background Animation */}
       <motion.div
         className="absolute inset-0 flex justify-center items-center pointer-events-none"
         animate={{

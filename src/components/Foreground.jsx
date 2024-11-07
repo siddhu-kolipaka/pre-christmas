@@ -7,7 +7,6 @@ const Foreground = () => {
       <div className="absolute w-screen h-screen text-white flex flex-col justify-around items-center p-8 bg-gradient-to-b from-black/100 via-black/50 to-black/100">
         <Snowfall color="white" snowflakeCount={100} />
 
-        {/* Main Text Animation */}
         <motion.div
           className="flex flex-col justify-center items-center"
           initial={{ opacity: 0, y: -100 }}
@@ -32,13 +31,10 @@ const Foreground = () => {
           </motion.div>
           <motion.div
             className="w-fit font-cursive text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
-            initial={{ scale: 1 }}
-            animate={{ scale: 1.3 }}
+            animate={{ scale: [1, 1.4, 1] }}
             transition={{
-              type: "spring",
               duration: 2,
               repeat: Infinity,
-              ease: "easein",
             }}
           >
             Pre-Christmas
@@ -83,7 +79,7 @@ const Foreground = () => {
           <div className="flex text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
             <motion.div
               className="w-fit font-caps flex flex-col justify-center items-center border-r-2 p-4"
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ scale: 1.05 }}
               transition={{
                 type: "spring",
                 stiffness: 300,
@@ -95,7 +91,7 @@ const Foreground = () => {
             </motion.div>
             <motion.div
               className="w-fit font-caps flex flex-col justify-center items-center border-l-2 p-4"
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ scale: 1.05 }}
               transition={{
                 type: "spring",
                 stiffness: 300,
@@ -113,13 +109,10 @@ const Foreground = () => {
 
           <motion.div
             className="font-serif font-medium bg-white text-black text-lg sm:text-xl py-4 px-6 my-4 rounded-full opacity-50"
-            initial={{ scale: 1 }}
-            animate={{ scale: 1.1 }}
+            animate={{ scale: [1, 1.1, 1] }}
             transition={{
-              type: "spring",
               duration: 2,
               repeat: Infinity,
-              ease: "easein",
             }}
           >
             CAROLS - DANCE - DRAMA
@@ -137,7 +130,7 @@ const Foreground = () => {
           </motion.div>
 
           {/* Register Button Animation */}
-          <motion.a href="http://google.com">
+          <motion.a href="https://forms.gle/Y14H4NiCTMKdQPV89">
             <motion.button
               className="text-black text-lg sm:text-xl font-semibold bg-white rounded-xl px-6 py-3 font-caps opacity-50"
               whileHover={{
@@ -146,6 +139,13 @@ const Foreground = () => {
                 transition: { duration: 0.5 },
               }}
               whileTap={{ scale: 0.95 }}
+              initial={{ y: 10 }}
+              animate={{ y: 0 }}
+              transition={{
+                duration: 0.2,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
             >
               Register Now
             </motion.button>
