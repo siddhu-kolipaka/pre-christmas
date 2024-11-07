@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const useScreenSize = () => {
   const [screenSize, setScreenSize] = useState({
@@ -34,10 +34,10 @@ const Backdrop = ({ videoSrc }) => {
   }
 
   return (
-    <div className="absolute w-screen h-screen flex overflow-hidden ">
+    <div className="absolute w-screen h-screen flex overflow-hidden">
       <video
         style={{ width: videoWidth }}
-        className="h-full object-cover flex-grow "
+        className="h-full object-cover flex-grow"
         autoPlay
         loop
         muted
