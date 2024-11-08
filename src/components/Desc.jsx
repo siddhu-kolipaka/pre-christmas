@@ -68,9 +68,10 @@ export default function Component() {
             Get ready to deck the halls early!
           </p>
           <p className="text-gray-300">
-            The IIEST EU Fellowship, in collaboration with Euphony, the IIEST
-            Music Club, is bringing the magic of winter to campus. Who says
-            Christmas cheer has to wait until December?
+            The IIEST EU Fellowship, in collaboration with Euphony,
+            Reflexo-beta, Catharsis, Camera-buff, and Scage, is bringing the
+            magic of winter to campus. Who says Christmas cheer has to wait
+            until December?
           </p>
           <p className="text-gray-300">
             With winter break around the corner, we&apos;re bringing holiday
