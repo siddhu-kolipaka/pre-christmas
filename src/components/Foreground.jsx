@@ -86,7 +86,7 @@ const Foreground = () => {
                 damping: 25,
               }}
             >
-              <div className="p-2 text-5xl sm:text-6xl font-serif">9</div>
+              <div className="p-2 text-5xl sm:text-6xl font-serif">11</div>
               <div>NOVEMBER</div>
             </motion.div>
             <motion.div
