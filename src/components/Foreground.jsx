@@ -99,7 +99,7 @@ const Foreground = () => {
               }}
             >
               <div className="p-2 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-caps">
-                SATURDAY
+                MONDAY
               </div>
               <div className="w-fit font-caps text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
                 AT <span className="font-serif">4:30</span> PM
