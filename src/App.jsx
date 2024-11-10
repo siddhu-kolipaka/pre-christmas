@@ -1,21 +1,14 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "./components/Home";
 import Luckydraw from "./components/Luckydraw";
 const App = () => {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Home />,
-    },
-    {
-      path: "/luckydraw",
-      element: <Luckydraw />,
-    },
-  ]);
-
+  const location = useLocation();
   return (
     <>
-      <RouterProvider router={router} />
+      <Routes location={location} key={location.pathname}>
+        <Route index element={<Home />}></Route>
+        <Route path="/work" element={<Luckydraw />}></Route>
+      </Routes>
     </>
   );
 };
