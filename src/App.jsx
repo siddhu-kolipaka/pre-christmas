@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "./components/Home";
 import Luckydraw from "./components/Luckydraw";
 const App = () => {
@@ -7,7 +7,7 @@ const App = () => {
     <>
       <Routes location={location} key={location.pathname}>
         <Route index element={<Home />}></Route>
-        <Route path="/work" element={<Luckydraw />}></Route>
+        <Route path="/draw" element={<Luckydraw />}></Route>
       </Routes>
     </>
   );
