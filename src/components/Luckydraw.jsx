@@ -23,66 +23,61 @@ const LuckyDraw = () => {
   const [hasDrawnSpecialNumber, setHasDrawnSpecialNumber] = useState(false);
 
   const generateRandomNumber = () => {
-    return Math.floor(Math.random() * (2004500 - 2004001 + 1)) + 2004001;
+    return Math.floor(Math.random() * (20240400 - 20240001 + 1)) + 20240001;
   };
 
   const generateSpecialNumber = () => {
     if (!hasDrawnSpecialNumber && drawCount >= 4 && drawCount <= 9) {
       if (drawCount === 9 && !hasDrawnSpecialNumber) {
         setHasDrawnSpecialNumber(true);
-        return 2004001;
+        return 20240001;
       }
       if (Math.floor(Math.random() * 2) === 0) {
         setHasDrawnSpecialNumber(true);
-        return 2004001;
+        return 20240001;
       }
     }
     return generateRandomNumber();
   };
 
   const handleDraw = () => {
-    if (drawCount >= 10) return; // Stop after 10 draws
+    if (drawCount >= 30) return;
 
     setIsDrawing(true);
-    // Display random numbers quickly before the final draw
     let randomInterval = setInterval(() => {
       let randomDrawnNumber = generateRandomNumber();
       setDrawnNumber(randomDrawnNumber);
-    }, 100); // Update every 100ms for a random effect
+    }, 100);
 
     setTimeout(() => {
-      clearInterval(randomInterval); // Stop the random updates after a short time
+      clearInterval(randomInterval);
 
-      // Use a Set to keep track of drawn numbers
       const drawnNumbersSet = new Set(
         winnersList.map((winner) => winner.number)
       );
 
-      // Generate a new number that hasn't been drawn yet
       let finalNumber;
       do {
         finalNumber = generateSpecialNumber();
-        if (finalNumber == 2004001) {
+        if (finalNumber == 20240001) {
           setHasDrawnSpecialNumber(true);
         }
       } while (drawnNumbersSet.has(finalNumber));
 
       setDrawnNumber(finalNumber);
 
-      // Update the winners list with the new number and draw count
       const newWinnersList = [
         { draw: drawCount + 1, number: finalNumber },
         ...winnersList,
       ];
       setWinnersList(newWinnersList);
 
-      // Increase the draw count
       setDrawCount((prev) => prev + 1);
 
       setTimeout(() => {
         setIsDrawing(false);
-      }, 500); // Simulate a small delay before allowing another draw
-    }, 1000);
+      }, 500);
+    }, 3000);
   };
 
   return (
@@ -99,7 +94,6 @@ const LuckyDraw = () => {
         p: 2,
       }}
     >
-      {/* Snowfall effect */}
       <Snowfall color="white" snowflakeCount={100} />
 
       <Card
@@ -119,11 +113,11 @@ const LuckyDraw = () => {
         <Box sx={{ width: "60%" }}>
           <CardHeader
             title="Pre-Christmas Lucky Draw"
-            subheader="Generating a random number between 2004001 and 2004500"
+            subheader="Generating a random number between 20240001 and 20240500"
             titleTypographyProps={{
               variant: "h4",
               fontWeight: "bold",
-              color: "green", // Green color for title
+              color: "green",
               fontFamily: "'Roboto Slab', serif",
             }}
             subheaderTypographyProps={{
@@ -143,7 +137,7 @@ const LuckyDraw = () => {
               <Button
                 variant="contained"
                 onClick={handleDraw}
-                disabled={isDrawing || drawCount >= 10}
+                disabled={isDrawing || drawCount >= 30}
                 sx={{
                   width: "100%",
                   fontSize: "1.1rem",
@@ -166,7 +160,7 @@ const LuckyDraw = () => {
                 fontWeight="bold"
                 sx={{
                   fontFamily: "'Roboto Slab', serif",
-                  color: "green", // Custom green color for drawn number
+                  color: "green",
                   textShadow: "2px 2px 8px rgba(0, 0, 0, 0.5)",
                   transition: "all 0.3s ease",
                 }}
@@ -185,8 +179,7 @@ const LuckyDraw = () => {
                 )}
               </Typography>
 
-              {/* Congrats message after 10 draws */}
-              {drawCount >= 10 && (
+              {drawCount >= 30 && (
                 <Typography
                   variant="h4"
                   sx={{
@@ -203,7 +196,6 @@ const LuckyDraw = () => {
           </CardContent>
         </Box>
 
-        {/* Lucky Draw Winners List */}
         <Box
           sx={{
             width: "35%",
@@ -230,8 +222,8 @@ const LuckyDraw = () => {
           />
           <CardContent
             sx={{
-              height: "auto", // Adjust height to fit all 10 items without overflow
-              maxHeight: "500px", // Ensure it doesn't get too tall
+              height: "auto",
+              maxHeight: "500px",
               display: "flex",
               flexDirection: "column",
               gap: 1.5,
