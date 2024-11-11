@@ -20,24 +20,9 @@ const LuckyDraw = () => {
   const [isDrawing, setIsDrawing] = useState(false);
   const [winnersList, setWinnersList] = useState([]);
   const [drawCount, setDrawCount] = useState(0);
-  const [hasDrawnSpecialNumber, setHasDrawnSpecialNumber] = useState(false);
 
   const generateRandomNumber = () => {
     return Math.floor(Math.random() * (20240400 - 20240001 + 1)) + 20240001;
-  };
-
-  const generateSpecialNumber = () => {
-    if (!hasDrawnSpecialNumber && drawCount >= 4 && drawCount <= 9) {
-      if (drawCount === 9 && !hasDrawnSpecialNumber) {
-        setHasDrawnSpecialNumber(true);
-        return 20240001;
-      }
-      if (Math.floor(Math.random() * 2) === 0) {
-        setHasDrawnSpecialNumber(true);
-        return 20240001;
-      }
-    }
-    return generateRandomNumber();
   };
 
   const handleDraw = () => {
@@ -58,10 +43,7 @@ const LuckyDraw = () => {
 
       let finalNumber;
       do {
-        finalNumber = generateSpecialNumber();
-        if (finalNumber == 20240001) {
-          setHasDrawnSpecialNumber(true);
-        }
+        finalNumber = generateRandomNumber();
       } while (drawnNumbersSet.has(finalNumber));
 
       setDrawnNumber(finalNumber);
